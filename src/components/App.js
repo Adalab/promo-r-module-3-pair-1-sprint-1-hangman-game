@@ -1,6 +1,25 @@
 import '../styles/App.scss';
 
+import { useState } from 'react';
+
 function App() {
+  const [numberOfErrors, setNumberOfErrors] = useState(0);
+
+  const [lastLetter, setLastLetter] = useState('');
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
+  const handleClickIncrease = () => {
+    setNumberOfErrors(numberOfErrors + 1);
+    console.log(numberOfErrors);
+  };
+
+  const handleLastLetter = (event) => {
+    setLastLetter(event.target.value);
+  };
+
   return (
     <div className="page">
       <header>
@@ -33,21 +52,24 @@ function App() {
               <li className="letter">x</li>
             </ul>
           </div>
-          <form className="form">
+          <form onSubmit={handleSubmit} className="form">
             <label className="title" htmlFor="last-letter">
               Escribe una letra:
             </label>
             <input
               autoComplete="off"
-              className="htmlForm__input"
+              className="form__input"
               maxLength="1"
               type="text"
               name="last-letter"
               id="last-letter"
+              onChange={handleLastLetter}
+              value={lastLetter}
             />
+            <button onClick={handleClickIncrease}>Incrementar</button>
           </form>
         </section>
-        <section className="dummy error-5">
+        <section className={`dummy error-${numberOfErrors}`}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
