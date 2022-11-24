@@ -16,9 +16,24 @@ function App() {
     console.log(numberOfErrors);
   };
 
+  
   const handleLastLetter = (event) => {
+    const regex = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]{0,1}/;
+    if (regex.test(event.target.value)){
     setLastLetter(event.target.value);
+    }else{
+      console.log('Escribe una letra que esté permitida')
+    }
   };
+  // const handleLastLetter = (event) => {
+  //   const regex = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]/;
+  //   if (event.target.value === '' || regex.test(event.target.value)){
+  //   setLastLetter(event.target.value);
+  //   }else{
+  //     console.log('Escribe una letra que esté permitida')
+  //   }
+  // };
+
 
   return (
     <div className="page">
